@@ -55,7 +55,7 @@ cp clamav\libclamav\matcher.h .\include_x64
 cp clamav\libclamav\matcher-ac.h .\include_x64
 cp clamav\libclamav\others.h .\include_x64
 cp clamav\build_x64\install\include\*.h .\include_x64
-cp -r C:\vcpkg\installed\x64-windows-static\x64-windows-static\include\* .\include_x64
+cp -r C:\vcpkg\installed\x64-windows-static\include\* .\include_x64
 
 mkdir output
 mv include_x64 output
