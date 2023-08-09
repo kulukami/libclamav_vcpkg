@@ -4,7 +4,7 @@ on:
     tags:
     - v*
 jobs:
-  windows-amd64:
+  build_win64:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,24 +15,38 @@ jobs:
       - name: Package
         run: 7z a libclamav.zip ./output/*
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Upload 
+        uses: actions/upload-artifact@v3
         with:
-          draft: false
-          prerelease: false
-          release_name: Release ${{github.ref}}
-          tag_name: ${{github.ref}}
+          name: libclamav
+          path: libclamav.zip
 
-      - name: Upload Release Asset 
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        with:
-          asset_content_type: application/zip
-          asset_name: libclamav.zip
-          asset_path: ./libclamav.zip
-          upload_url: ${{steps.create_release.outputs.upload_url}}
+  release_all:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      with:
+        draft: false
+        prerelease: false
+        release_name: Release ${{github.ref}}
+        tag_name: ${{github.ref}}
+      uses: actions/download-artifact@v3
+    with:
+      path: ./
+    - name: Upload Release Asset 
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      with:
+        asset_content_type: application/zip
+        asset_name: libclamav.zip
+        asset_path: ./libclamav.zip
+        upload_url: ${{steps.create_release.outputs.upload_url}}
+    needs:
+    - build_win64
