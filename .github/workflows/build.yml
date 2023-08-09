@@ -1,10 +1,10 @@
-name: libclamav_win64
+name: build
 on:
   push:
     branches:
     - main
 jobs:
-  windows-amd64:
+  build_win64:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
