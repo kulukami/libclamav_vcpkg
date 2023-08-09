@@ -1,8 +1,8 @@
 name: libclamav_win64
 on:
   push:
-    branches:
-    - main
+    tags:
+    - v*
 jobs:
   windows-amd64:
     runs-on: windows-latest
@@ -14,9 +14,11 @@ jobs:
         run: .\libclamav_win_vcpkg_x64.ps1
       - name: Package
         run: 7z a libclamav.zip ./output/*
-      - name: Upload 
-        uses: actions/upload-artifact@v3
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: libclamav
-          path: libclamav.zip
+          files: libclamav.zip
+
 
