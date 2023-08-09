@@ -1,0 +1,24 @@
+name: libclamav_win64
+on:
+  push:
+    tags:
+    - v*
+    branches:
+    - main
+jobs:
+  windows-amd64:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Build lib
+        run: .\libclamav_win_vcpkg_x64.ps1
+      - name: Package
+        run: 7z a libclamav.zip ./output/*
+      - name: Upload 
+        uses: actions/upload-artifact@v3
+        with:
+          name: libclamav
+          path: libclamav.zip
+
