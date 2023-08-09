@@ -33,9 +33,9 @@ jobs:
         prerelease: false
         release_name: Release ${{github.ref}}
         tag_name: ${{github.ref}}
-      uses: actions/download-artifact@v3
-    with:
-      path: ./
+    - uses: actions/download-artifact@v3
+      with:
+        path: ./
     - name: Upload Release Asset 
       id: upload-release-asset
       uses: actions/upload-release-asset@v1
