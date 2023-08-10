@@ -60,3 +60,4 @@ cp -r C:\vcpkg\installed\x64-windows-static\include\* .\include_x64
 mkdir output
 mv include_x64 output
 mv lib_static_vcpkg_x64 output
+mv libclamav_vcpkg_x64 output
