@@ -1,0 +1,51 @@
+name: build
+on:
+  push:
+    branches:
+    - main
+jobs:
+  build_osx_x64:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: Build lib
+      run: ./libclamav_osx_vcpkg_x64.sh
+    - name: Package
+      run: 7z a libclamav_osx_vcpkg_x64.zip ./output/*
+    - name: Upload 
+      uses: actions/upload-artifact@v3
+      with:
+        name: libclamav_osx_vcpkg_x64
+        path: libclamav_osx_vcpkg_x64.zip
+
+  release_all:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      with:
+        draft: false
+        prerelease: false
+        release_name: Release ${{github.ref}}
+        tag_name: ${{github.ref}}
+    - uses: actions/download-artifact@v3
+      with:
+        path: ./
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      with:
+        asset_content_type: application/zip
+        asset_name: libclamav_osx_vcpkg_x64.zip
+        asset_path: libclamav_osx_vcpkg_x64/libclamav_osx_vcpkg_x64.zip
+        upload_url: ${{steps.create_release.outputs.upload_url}}
+    needs:
+    - build_osx_x64

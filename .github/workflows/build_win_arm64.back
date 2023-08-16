@@ -11,12 +11,12 @@ jobs:
       with:
         submodules: recursive
     - name: Build lib
-      run: .\libclamav_win_vcpkg_x64.ps1
+      run: .\libclamav_win_vcpkg_arm64.ps1
     - name: Package
       run: 7z a libclamav.zip ./output/*
     - name: Upload 
       uses: actions/upload-artifact@v3
       with:
-        name: libclamav
-        path: libclamav.zip
+        name: libclamav_win_vcpkg_arm64
+        path: libclamav_win_vcpkg_arm64.zip
 

@@ -1,0 +1,22 @@
+name: build
+on:
+  push:
+    branches:
+    - main
+jobs:
+  build_win64:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: Build lib
+      run: .\libclamav_win_vcpkg_x64.ps1
+    - name: Package
+      run: 7z a libclamav.zip ./output/*
+    - name: Upload 
+      uses: actions/upload-artifact@v3
+      with:
+        name: libclamav_win_vcpkg_x64
+        path: libclamav_win_vcpkg_x64.zip
+

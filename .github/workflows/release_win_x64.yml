@@ -4,7 +4,7 @@ on:
     tags:
     - v*
 jobs:
-  build_win64:
+  build_win_x64:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
@@ -13,12 +13,12 @@ jobs:
     - name: Build lib
       run: .\libclamav_win_vcpkg_x64.ps1
     - name: Package
-      run: 7z a libclamav.zip ./output/*
+      run: 7z a libclamav_win_vcpkg_x64.zip ./output/*
     - name: Upload 
       uses: actions/upload-artifact@v3
       with:
-        name: libclamav
-        path: libclamav.zip
+        name: libclamav_win_vcpkg_x64
+        path: libclamav_win_vcpkg_x64.zip
   release_all:
     runs-on: ubuntu-latest
     permissions: write-all
@@ -43,8 +43,8 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
         asset_content_type: application/zip
-        asset_name: libclamav.zip
-        asset_path: libclamav/libclamav.zip
+        asset_name: libclamav_win_vcpkg_x64.zip
+        asset_path: libclamav_win_vcpkg_x64/libclamav_win_vcpkg_x64.zip
         upload_url: ${{steps.create_release.outputs.upload_url}}
     needs:
-    - build_win64
+    - build_win_x64

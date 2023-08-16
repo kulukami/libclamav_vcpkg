@@ -1,0 +1,22 @@
+name: build
+on:
+  push:
+    branches:
+    - main
+jobs:
+  build_win64:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: Build lib
+      run: ./libclamav_linux_vcpkg_arm64.sh
+    - name: Package
+      run: 7z a libclamav_linux_vcpkg_arm64.zip ./output/*
+    - name: Upload 
+      uses: actions/upload-artifact@v3
+      with:
+        name: libclamav_linux_vcpkg_arm64
+        path: libclamav_linux_vcpkg_arm64.zip
+
