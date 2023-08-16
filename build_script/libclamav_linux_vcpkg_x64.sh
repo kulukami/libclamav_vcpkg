@@ -1,7 +1,7 @@
 export VCPKG_DEFAULT_TRIPLET="x64-linux-static"
 export RUSTC_TARGET="x86_64-unknown-linux-gnu"
 export TARGET_ARCH="x64"
-apt-get install g++ gcc -y
+sudo apt-get install g++ gcc -y
 
 rustup target add $RUSTC_TARGET
 

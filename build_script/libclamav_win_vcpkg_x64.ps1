@@ -2,23 +2,23 @@ $VCPKG_DEFAULT_TRIPLET="x64-windows-static"
 $RUSTC_TARGET="x86_64-pc-windows-msvc"
 $TARGET_ARCH="x64"
 
+rustup target add $RUSTC_TARGET
+$env:VCPKG_DEFAULT_TRIPLET=$VCPKG_DEFAULT_TRIPLET
+
 vcpkg install `
-curl[openssl]:x64-windows-static `
-json-c:x64-windows-static `
-libxml2:x64-windows-static `
-pcre2:x64-windows-static `
-pthreads:x64-windows-static `
-zlib:x64-windows-static `
-pdcurses:x64-windows-static  `
-bzip2:x64-windows-static `
-check:x64-windows-static
+curl[openssl]:$VCPKG_DEFAULT_TRIPLET `
+json-c:$VCPKG_DEFAULT_TRIPLET `
+libxml2:$VCPKG_DEFAULT_TRIPLET `
+pcre2:$VCPKG_DEFAULT_TRIPLET `
+pthreads:$VCPKG_DEFAULT_TRIPLET `
+zlib:$VCPKG_DEFAULT_TRIPLET `
+pdcurses:$VCPKG_DEFAULT_TRIPLET  `
+bzip2:$VCPKG_DEFAULT_TRIPLET `
+check:$VCPKG_DEFAULT_TRIPLET
 
-
-$VCPKG_PATH="C:\vcpkg"
-$VCPKG_INSTALL_PATH="C:\vcpkg\installed\x64-windows-static\"
-
-$env:VCPKG_DEFAULT_TRIPLET="x64-windows-static"
-
+$VCPKG_ROOT="C:\vcpkg"
+$VCPKG_INSTALL_PATH="$VCPKG_ROOT\installed\$VCPKG_DEFAULT_TRIPLET"
+$env:VCPKG_INSTALL_PATH="$VCPKG_INSTALL_PATH"
 $env:VCPKGRS_DYNAMIC=0
 
 git clone https://github.com/kulukami/clamav -b rel/1.1_yara_hit
@@ -27,7 +27,7 @@ cd clamav
 mkdir build
 cd build
 cmake .. -A x64 `
-  -D CMAKE_TOOLCHAIN_FILE="$VCPKG_PATH\scripts\buildsystems\vcpkg.cmake" `
+  -D CMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" `
   -D VCPKG_TARGET_TRIPLET="$VCPKG_DEFAULT_TRIPLET"                       `
   -D VCPKG_TARGET_ARCHITECTURE="$TARGET_ARCH"                            `
   -D RUST_COMPILER_TARGET="$RUSTC_TARGET"                                `

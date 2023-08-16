@@ -1,7 +1,7 @@
 export VCPKG_DEFAULT_TRIPLET="arm64-linux-static"
 export RUSTC_TARGET="aarch64-unknown-linux-gnu"
 export TARGET_ARCH="arm64"
-apt-get install g++-aarch64-linux-gnu gcc-aarch64-linux-gnu -y
+sudo apt-get install g++-aarch64-linux-gnu gcc-aarch64-linux-gnu -y
 
 rustup target add $RUSTC_TARGET
 

@@ -3,7 +3,6 @@ $RUSTC_TARGET="aarch64-pc-windows-msvc"
 $TARGET_ARCH="arm64"
 
 rustup target add $RUSTC_TARGET
-
 $env:VCPKG_DEFAULT_TRIPLET=$VCPKG_DEFAULT_TRIPLET
 
 vcpkg install `
@@ -20,7 +19,6 @@ check:$VCPKG_DEFAULT_TRIPLET
 $VCPKG_ROOT="C:\vcpkg"
 $VCPKG_INSTALL_PATH="$VCPKG_ROOT\installed\$VCPKG_DEFAULT_TRIPLET"
 $env:VCPKG_INSTALL_PATH="$VCPKG_INSTALL_PATH"
-
 $env:VCPKGRS_DYNAMIC=0
 
 git clone https://github.com/kulukami/clamav -b rel/1.1_yara_hit
@@ -29,7 +27,7 @@ cd clamav
 mkdir build
 cd build
 cmake .. -A arm64 `
-  -D CMAKE_TOOLCHAIN_FILE="$VCPKG_PATH\scripts\buildsystems\vcpkg.cmake" `
+  -D CMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" `
   -D VCPKG_TARGET_TRIPLET="$VCPKG_DEFAULT_TRIPLET"                       `
   -D VCPKG_TARGET_ARCHITECTURE="$TARGET_ARCH"                            `
   -D RUST_COMPILER_TARGET="$RUSTC_TARGET"                                `
