@@ -47,10 +47,10 @@ cd ../..
 rm -rf lib
 mkdir lib
 
-cp clamav/build/libclamav/libclamav_static.lib ./lib
-cp clamav/build/libclammspack/libclammspack_static.lib ./lib
-cp clamav/build/libclamunrar/libclamunrar_static.lib ./lib
-cp clamav/build/libclamunrar_iface/libclamunrar_iface_static.lib ./lib
+cp clamav/build/libclamav/libclamav_static.a ./lib
+cp clamav/build/libclammspack/libclammspack_static.a ./lib
+cp clamav/build/libclamunrar/libclamunrar_static.a ./lib
+cp clamav/build/libclamunrar_iface/libclamunrar_iface_static.a ./lib
 cp clamav/build/$RUSTC_TARGET/release/libclamav_rust.a ./lib
 cp clamav/build/*.a ./lib
 
