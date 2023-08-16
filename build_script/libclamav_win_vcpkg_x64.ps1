@@ -41,22 +41,22 @@ cmake .. -A x64 `
   -D CMAKE_INSTALL_PREFIX="install"
 
 
-cmake --build . --config Release --target install -j5
+cmake --build . --config Release --target install -j4
 
 
 cd ../..
-mkdir libclamav_vcpkg
-cp clamav\build\libclamav\Release\libclamav_static.lib .\libclamav_vcpkg
-cp clamav\build\libclammspack\Release\libclammspack_static.lib .\libclamav_vcpkg
-cp clamav\build\libclamunrar\Release\libclamunrar_static.lib .\libclamav_vcpkg
-cp clamav\build\libclamunrar_iface\Release\libclamunrar_iface_static.lib .\libclamav_vcpkg
-cp clamav\build\win32\compat\Release\libwin32_compat.lib .\libclamav_vcpkg
+mkdir lib
+cp clamav\build\libclamav\Release\libclamav_static.lib .\lib
+cp clamav\build\libclammspack\Release\libclammspack_static.lib .\lib
+cp clamav\build\libclamunrar\Release\libclamunrar_static.lib .\lib
+cp clamav\build\libclamunrar_iface\Release\libclamunrar_iface_static.lib .\lib
+cp clamav\build\win32\compat\Release\libwin32_compat.lib .\lib
 
-mkdir lib_static_vcpkg
+mkdir lib
 
-cp clamav\build\install\*.dll .\lib_static_vcpkg
-cp clamav\build\install\*.lib .\lib_static_vcpkg
-cp $VCPKG_INSTALL_PATH\lib\*.lib .\lib_static_vcpkg
+cp clamav\build\install\*.dll .\lib
+cp clamav\build\install\*.lib .\lib
+cp $VCPKG_INSTALL_PATH\lib\*.lib .\lib
 
 mkdir include 
 cp clamav\libclamav\clamav.h .\include
@@ -68,5 +68,4 @@ cp -r C:\vcpkg\installed\x64-windows-static\include\* .\include
 
 mkdir output
 mv include output
-mv lib_static_vcpkg output
-mv libclamav_vcpkg output
+mv lib output
