@@ -63,3 +63,8 @@ cp clamav/libclamav/clamav.h ./include
 cp clamav/libclamav/matcher.h ./include
 cp clamav/libclamav/matcher-ac.h ./include
 cp clamav/libclamav/others.h ./include
+
+
+mkdir output
+mv include output
+mv lib output
