@@ -1,4 +1,4 @@
-name: build
+name: build_osx_vcpkg_x64
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ jobs:
       with:
         submodules: recursive
     - name: Build lib
-      run: ./libclamav_osx_vcpkg_x64.sh
+      run: bash libclamav_osx_vcpkg_x64.sh
     - name: Package
       run: 7z a libclamav_osx_vcpkg_x64.zip ./output/*
     - name: Upload 

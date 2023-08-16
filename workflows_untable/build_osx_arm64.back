@@ -1,22 +1,22 @@
-name: build
+name: build_osx_vcpkg_arm64.back
 on:
   push:
     branches:
     - main
 jobs:
   build_win64:
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
       with:
         submodules: recursive
     - name: Build lib
-      run: .\libclamav_win_vcpkg_arm64.ps1
+      run: bash libclamav_osx_vcpkg_arm64.sh
     - name: Package
-      run: 7z a libclamav.zip ./output/*
+      run: 7z a libclamav_osx_vcpkg_arm64.zip ./output/*
     - name: Upload 
       uses: actions/upload-artifact@v3
       with:
-        name: libclamav_win_vcpkg_arm64
-        path: libclamav_win_vcpkg_arm64.zip
+        name: libclamav_osx_vcpkg_arm64
+        path: libclamav_osx_vcpkg_arm64.zip
 
