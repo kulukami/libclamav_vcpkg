@@ -1,5 +1,8 @@
 export VCPKG_DEFAULT_TRIPLET="arm64-osx-static"
 export RUSTC_TARGET="aarch64-apple-darwin"
+export TARGET_ARCH="arm64"
+
+rustup target add $RUSTC_TARGET
 
 git clone https://github.com/kulukami/vcpkg.git
 export VCPKG_ROOT="$(pwd)/vcpkg"
@@ -26,6 +29,8 @@ cd build
 cmake .. \
   -D CMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" \
   -D VCPKG_TARGET_TRIPLET="$VCPKG_DEFAULT_TRIPLET"                       \
+  -D VCPKG_TARGET_ARCHITECTURE="$TARGET_ARCH"                            \
+  -D RUST_COMPILER_TARGET="$RUSTC_TARGET"                                \
   -D ENABLE_TESTS=OFF                                                    \
   -D ENABLE_STATIC_LIB=ON                                                \
   -D ENABLE_LIBCLAMAV_ONLY=ON                                            \

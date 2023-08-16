@@ -1,19 +1,25 @@
+$VCPKG_DEFAULT_TRIPLET="arm64-windows-static"
+$RUSTC_TARGET="aarch64-pc-windows-msvc"
+$TARGET_ARCH="arm64"
+
+rustup target add $RUSTC_TARGET
+
+$env:VCPKG_DEFAULT_TRIPLET=$VCPKG_DEFAULT_TRIPLET
+
 vcpkg install `
-curl[openssl]:arm64-windows-static `
-json-c:arm64-windows-static `
-libxml2:arm64-windows-static `
-pcre2:arm64-windows-static `
-pthreads:arm64-windows-static `
-zlib:arm64-windows-static `
-pdcurses:arm64-windows-static  `
-bzip2:arm64-windows-static `
-check:arm64-windows-static
+curl[openssl]:$VCPKG_DEFAULT_TRIPLET `
+json-c:$VCPKG_DEFAULT_TRIPLET `
+libxml2:$VCPKG_DEFAULT_TRIPLET `
+pcre2:$VCPKG_DEFAULT_TRIPLET `
+pthreads:$VCPKG_DEFAULT_TRIPLET `
+zlib:$VCPKG_DEFAULT_TRIPLET `
+pdcurses:$VCPKG_DEFAULT_TRIPLET  `
+bzip2:$VCPKG_DEFAULT_TRIPLET `
+check:$VCPKG_DEFAULT_TRIPLET
 
-
-$VCPKG_PATH="C:\vcpkg"
-$VCPKG_INSTALL_PATH="C:\vcpkg\installed\arm64-windows-static\"
-
-$env:VCPKG_DEFAULT_TRIPLET="arm64-windows-static"
+$VCPKG_ROOT="C:\vcpkg"
+$VCPKG_INSTALL_PATH="$VCPKG_ROOT\installed\$VCPKG_DEFAULT_TRIPLET"
+$env:VCPKG_INSTALL_PATH="$VCPKG_INSTALL_PATH"
 
 $env:VCPKGRS_DYNAMIC=0
 
@@ -24,7 +30,9 @@ mkdir build
 cd build
 cmake .. -A arm64 `
   -D CMAKE_TOOLCHAIN_FILE="$VCPKG_PATH\scripts\buildsystems\vcpkg.cmake" `
-  -D VCPKG_TARGET_TRIPLET="arm64-windows-static"                           `
+  -D VCPKG_TARGET_TRIPLET="$VCPKG_DEFAULT_TRIPLET"                       `
+  -D VCPKG_TARGET_ARCHITECTURE="$TARGET_ARCH"                            `
+  -D RUST_COMPILER_TARGET="$RUSTC_TARGET"                                `
   -D CMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded                            `
   -D ENABLE_TESTS=OFF                                                    `
   -D ENABLE_STATIC_LIB=ON                                                `
@@ -61,7 +69,7 @@ cp clamav\libclamav\matcher.h .\include
 cp clamav\libclamav\matcher-ac.h .\include
 cp clamav\libclamav\others.h .\include
 cp clamav\build\install\include\*.h .\include
-cp -r C:\vcpkg\installed\arm64-windows-static\include\* .\include
+cp -r C:\vcpkg\installed\$VCPKG_DEFAULT_TRIPLET\include\* .\include
 
 mkdir output
 mv output

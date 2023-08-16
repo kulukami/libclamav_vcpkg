@@ -1,3 +1,7 @@
+$VCPKG_DEFAULT_TRIPLET="x64-windows-static"
+$RUSTC_TARGET="x86_64-pc-windows-msvc"
+$TARGET_ARCH="x64"
+
 vcpkg install `
 curl[openssl]:x64-windows-static `
 json-c:x64-windows-static `
@@ -24,7 +28,9 @@ mkdir build
 cd build
 cmake .. -A x64 `
   -D CMAKE_TOOLCHAIN_FILE="$VCPKG_PATH\scripts\buildsystems\vcpkg.cmake" `
-  -D VCPKG_TARGET_TRIPLET="x64-windows-static"                           `
+  -D VCPKG_TARGET_TRIPLET="$VCPKG_DEFAULT_TRIPLET"                       `
+  -D VCPKG_TARGET_ARCHITECTURE="$TARGET_ARCH"                            `
+  -D RUST_COMPILER_TARGET="$RUSTC_TARGET"                                `
   -D CMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded                            `
   -D ENABLE_TESTS=OFF                                                    `
   -D ENABLE_STATIC_LIB=ON                                                `
