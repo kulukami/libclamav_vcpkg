@@ -1,10 +1,10 @@
 name: release_linux_vcpkg_x64
-on:
+on: 
   push:
-    branches:
-    - main
+    tags:
+    - v*
 jobs:
-  build_linux_x64:
+  build_linux_vcpkg_x64:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

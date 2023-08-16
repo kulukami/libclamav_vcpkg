@@ -1,10 +1,10 @@
 name: release_osx_vcpkg_x64
-on:
+on: 
   push:
-    branches:
-    - main
+    tags:
+    - v*
 jobs:
-  build_osx_x64:
+  build_osx_vcpkg_x64:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3

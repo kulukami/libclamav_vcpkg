@@ -4,7 +4,7 @@ on:
     branches:
     - main
 jobs:
-  build_win64:
+  build_win_vcpkg_x64:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3

@@ -4,7 +4,7 @@ on:
     branches:
     - main
 jobs:
-  build_win64:
+  build_linux_vcpkg_arm64:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

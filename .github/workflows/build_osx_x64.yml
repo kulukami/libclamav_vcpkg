@@ -4,7 +4,7 @@ on:
     branches:
     - main
 jobs:
-  build_win64:
+  build_osx_vcpkg_x64:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
