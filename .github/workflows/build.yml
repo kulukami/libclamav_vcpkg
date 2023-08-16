@@ -7,7 +7,7 @@ on:
     - .github/workflows/**
     - build_script/**
 jobs:
-  build_linux_vcpkg_x64:
+  build_vcpkg_linux_x64:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
         name: libclamav_linux_vcpkg_x64
         path: output/*
 
-  build_linux_vcpkg_arm64:
+  build_vcpkg_linux_arm64:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -39,7 +39,7 @@ jobs:
         name: libclamav_linux_vcpkg_arm64
         path: output/*
 
-  build_osx_vcpkg_x64:
+  build_vcpkg_osx_x64:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
@@ -55,7 +55,7 @@ jobs:
         name: libclamav_osx_vcpkg_x64
         path: output/*
 
-  build_osx_vcpkg_arm64:
+  build_vcpkg_osx_arm64:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
@@ -71,7 +71,7 @@ jobs:
         name: libclamav_osx_vcpkg_arm64
         path: output/*
 
-  build_win_vcpkg_x64:
+  build_vcpkg_win_x64:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
@@ -87,7 +87,7 @@ jobs:
         name: libclamav_win_vcpkg_x64
         path: output/*
   
-  build_win_vcpkg_arm64:
+  build_vcpkg_win_arm64:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3

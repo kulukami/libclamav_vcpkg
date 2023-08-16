@@ -4,7 +4,7 @@ on:
     tags:
     - v*
 jobs:
-  build_linux_vcpkg_x64:
+  build_vcpkg_linux_x64:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -20,7 +20,7 @@ jobs:
         name: libclamav_linux_vcpkg_x64
         path: libclamav_linux_vcpkg_x64.zip
 
-  build_linux_vcpkg_arm64:
+  build_vcpkg_linux_arm64:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
         name: libclamav_linux_vcpkg_arm64
         path: output/*
 
-  build_osx_vcpkg_x64:
+  build_vcpkg_osx_x64:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
@@ -52,7 +52,7 @@ jobs:
         name: libclamav_osx_vcpkg_x64
         path: libclamav_osx_vcpkg_x64.zip
   
-  build_osx_vcpkg_arm64:
+  build_vcpkg_osx_arm64:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
@@ -68,7 +68,7 @@ jobs:
         name: libclamav_osx_vcpkg_arm64
         path: output/*
 
-  build_win_vcpkg_x64:
+  build_vcpkg_win_x64:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
@@ -84,7 +84,7 @@ jobs:
         name: libclamav_win_vcpkg_x64
         path: libclamav_win_vcpkg_x64.zip
 
-  build_win_vcpkg_arm64:
+  build_vcpkg_win_arm64:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
@@ -120,8 +120,8 @@ jobs:
     - name: Prepare artifact
       run: mv -f */*.zip ./ || true
       
-    - name: Upload build_linux_vcpkg_x64
-      id: upload-release-asset-build_linux_vcpkg_x64
+    - name: Upload build_vcpkg_linux_x64
+      id: upload-release-asset-build_vcpkg_linux_x64
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -131,8 +131,8 @@ jobs:
         asset_path: libclamav_linux_vcpkg_x64.zip
         upload_url: ${{steps.create_release.outputs.upload_url}}
 
-    - name: Upload build_linux_vcpkg_arm64
-      id: upload-release-asset-build_linux_vcpkg_arm64
+    - name: Upload build_vcpkg_linux_arm64
+      id: upload-release-asset-build_vcpkg_linux_arm64
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -142,8 +142,8 @@ jobs:
         asset_path: libclamav_linux_vcpkg_arm64.zip
         upload_url: ${{steps.create_release.outputs.upload_url}}
 
-    - name: Upload build_osx_vcpkg_x64
-      id: upload-release-asset-build_osx_vcpkg_x64
+    - name: Upload build_vcpkg_osx_x64
+      id: upload-release-asset-build_vcpkg_osx_x64
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -153,8 +153,8 @@ jobs:
         asset_path: libclamav_osx_vcpkg_x64.zip
         upload_url: ${{steps.create_release.outputs.upload_url}}
         
-    - name: Upload build_win_vcpkg_arm64
-      id: upload-release-asset-build_win_vcpkg_arm64
+    - name: Upload build_vcpkg_win_arm64
+      id: upload-release-asset-build_vcpkg_win_arm64
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -165,9 +165,9 @@ jobs:
         upload_url: ${{steps.create_release.outputs.upload_url}}
 
     needs:
-    - build_linux_vcpkg_x64
-    - build_linux_vcpkg_arm64
-    - build_osx_vcpkg_x64
-    - build_osx_vcpkg_arm64
-    - build_win_vcpkg_x64
-    - build_win_vcpkg_arm64
+    - build_vcpkg_linux_x64
+    - build_vcpkg_linux_arm64
+    - build_vcpkg_osx_x64
+    - build_vcpkg_osx_arm64
+    - build_vcpkg_win_x64
+    - build_vcpkg_win_arm64
