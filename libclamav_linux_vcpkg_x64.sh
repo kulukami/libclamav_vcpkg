@@ -18,7 +18,7 @@ libxml2:$VCPKG_DEFAULT_TRIPLET \
 
 export VCPKG_INSTALL_PATH="$VCPKG_ROOT/installed/$VCPKG_DEFAULT_TRIPLET"
 
-git clone https://github.com/kulukami/clamav -b 1.1_yara_hit
+git clone https://github.com/kulukami/clamav -b  rel/1.1_yara_hit
 
 cd clamav
 mkdir build

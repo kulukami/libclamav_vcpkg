@@ -17,7 +17,7 @@ $env:VCPKG_DEFAULT_TRIPLET="x64-windows-static"
 
 $env:VCPKGRS_DYNAMIC=0
 
-git clone https://github.com/kulukami/clamav -b rel/0.104
+git clone https://github.com/kulukami/clamav -b rel/1.1_yara_hit
 
 cd clamav
 mkdir build

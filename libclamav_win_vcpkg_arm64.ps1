@@ -1,30 +1,30 @@
 vcpkg install `
-curl[openssl]:x64-windows-static `
-json-c:x64-windows-static `
-libxml2:x64-windows-static `
-pcre2:x64-windows-static `
-pthreads:x64-windows-static `
-zlib:x64-windows-static `
-pdcurses:x64-windows-static  `
-bzip2:x64-windows-static `
-check:x64-windows-static
+curl[openssl]:arm64-windows-static `
+json-c:arm64-windows-static `
+libxml2:arm64-windows-static `
+pcre2:arm64-windows-static `
+pthreads:arm64-windows-static `
+zlib:arm64-windows-static `
+pdcurses:arm64-windows-static  `
+bzip2:arm64-windows-static `
+check:arm64-windows-static
 
 
 $VCPKG_PATH="C:\vcpkg"
-$VCPKG_INSTALL_PATH="C:\vcpkg\installed\x64-windows-static\"
+$VCPKG_INSTALL_PATH="C:\vcpkg\installed\arm64-windows-static\"
 
-$env:VCPKG_DEFAULT_TRIPLET="x64-windows-static"
+$env:VCPKG_DEFAULT_TRIPLET="arm64-windows-static"
 
 $env:VCPKGRS_DYNAMIC=0
 
-git clone https://github.com/kulukami/clamav -b rel/0.104
+git clone https://github.com/kulukami/clamav -b rel/1.1_yara_hit
 
 cd clamav
-mkdir build_x64
-cd build_x64
-cmake .. -A x64 `
+mkdir build
+cd build
+cmake .. -A arm64 `
   -D CMAKE_TOOLCHAIN_FILE="$VCPKG_PATH\scripts\buildsystems\vcpkg.cmake" `
-  -D VCPKG_TARGET_TRIPLET="x64-windows-static"                           `
+  -D VCPKG_TARGET_TRIPLET="arm64-windows-static"                           `
   -D CMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded                            `
   -D ENABLE_TESTS=OFF                                                    `
   -D ENABLE_STATIC_LIB=ON                                                `
@@ -45,28 +45,28 @@ cmake --build . --config Release --target install -j5
 
 
 cd ../..
-mkdir libclamav_vcpkg_x64
-cp clamav\build_x64\libclamav\Release\libclamav_static.lib .\libclamav_vcpkg_x64
-cp clamav\build_x64\libclammspack\Release\libclammspack_static.lib .\libclamav_vcpkg_x64
-cp clamav\build_x64\libclamunrar\Release\libclamunrar_static.lib .\libclamav_vcpkg_x64
-cp clamav\build_x64\libclamunrar_iface\Release\libclamunrar_iface_static.lib .\libclamav_vcpkg_x64
-cp clamav\build_x64\win32\compat\Release\libwin32_compat.lib .\libclamav_vcpkg_x64
+mkdir libclamav_vcpkg_arm64
+cp clamav\build_arm64\libclamav\Release\libclamav_static.lib .\libclamav_vcpkg_arm64
+cp clamav\build_arm64\libclammspack\Release\libclammspack_static.lib .\libclamav_vcpkg_arm64
+cp clamav\build_arm64\libclamunrar\Release\libclamunrar_static.lib .\libclamav_vcpkg_arm64
+cp clamav\build_arm64\libclamunrar_iface\Release\libclamunrar_iface_static.lib .\libclamav_vcpkg_arm64
+cp clamav\build_arm64\win32\compat\Release\libwin32_compat.lib .\libclamav_vcpkg_arm64
 
-mkdir lib_static_vcpkg_x64
+mkdir lib_static_vcpkg_arm64
 
-cp clamav\build_x64\install\*.dll .\lib_static_vcpkg_x64
-cp clamav\build_x64\install\*.lib .\lib_static_vcpkg_x64
-cp $VCPKG_INSTALL_PATH\lib\*.lib .\lib_static_vcpkg_x64
+cp clamav\build_arm64\install\*.dll .\lib_static_vcpkg_arm64
+cp clamav\build_arm64\install\*.lib .\lib_static_vcpkg_arm64
+cp $VCPKG_INSTALL_PATH\lib\*.lib .\lib_static_vcpkg_arm64
 
-mkdir include_x64 
-cp clamav\libclamav\clamav.h .\include_x64
-cp clamav\libclamav\matcher.h .\include_x64
-cp clamav\libclamav\matcher-ac.h .\include_x64
-cp clamav\libclamav\others.h .\include_x64
-cp clamav\build_x64\install\include\*.h .\include_x64
-cp -r C:\vcpkg\installed\x64-windows-static\include\* .\include_x64
+mkdir include_arm64 
+cp clamav\libclamav\clamav.h .\include_arm64
+cp clamav\libclamav\matcher.h .\include_arm64
+cp clamav\libclamav\matcher-ac.h .\include_arm64
+cp clamav\libclamav\others.h .\include_arm64
+cp clamav\build_arm64\install\include\*.h .\include_arm64
+cp -r C:\vcpkg\installed\arm64-windows-static\include\* .\include_arm64
 
 mkdir output
-mv include_x64 output
-mv lib_static_vcpkg_x64 output
-mv libclamav_vcpkg_x64 output
+mv include_arm64 output
+mv lib_static_vcpkg_arm64 output
+mv libclamav_vcpkg_arm64 output
