@@ -63,7 +63,7 @@ cp clamav/libclamav/clamav.h ./include
 cp clamav/libclamav/matcher.h ./include
 cp clamav/libclamav/matcher-ac.h ./include
 cp clamav/libclamav/others.h ./include
-
+cp -r $VCPKG_ROOT/installed/$VCPKG_DEFAULT_TRIPLET/include/* ./include
 
 mkdir output
 mv include output
