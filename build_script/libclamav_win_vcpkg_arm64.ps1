@@ -51,7 +51,6 @@ cp clamav\build\libclammspack\Release\libclammspack_static.lib .\lib
 cp clamav\build\libclamunrar\Release\libclamunrar_static.lib .\lib
 cp clamav\build\libclamunrar_iface\Release\libclamunrar_iface_static.lib .\lib
 cp clamav\build\win32\compat\Release\libwin32_compat.lib .\lib
-
 cp clamav\build\install\*.dll .\lib
 cp clamav\build\install\*.lib .\lib
 cp $VCPKG_INSTALL_PATH\lib\*.lib .\lib
@@ -65,6 +64,5 @@ cp clamav\build\install\include\*.h .\include
 cp -r C:\vcpkg\installed\arm64-windows-static\include\* .\include
 
 mkdir output
+mv output
 mv include output
-mv lib_static_vcpkg_arm64 output
-mv libclamav_vcpkg_arm64 output

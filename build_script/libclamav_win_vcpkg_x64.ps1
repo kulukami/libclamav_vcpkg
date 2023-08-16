@@ -51,9 +51,6 @@ cp clamav\build\libclammspack\Release\libclammspack_static.lib .\lib
 cp clamav\build\libclamunrar\Release\libclamunrar_static.lib .\lib
 cp clamav\build\libclamunrar_iface\Release\libclamunrar_iface_static.lib .\lib
 cp clamav\build\win32\compat\Release\libwin32_compat.lib .\lib
-
-mkdir lib
-
 cp clamav\build\install\*.dll .\lib
 cp clamav\build\install\*.lib .\lib
 cp $VCPKG_INSTALL_PATH\lib\*.lib .\lib
