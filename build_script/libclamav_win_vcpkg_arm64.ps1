@@ -70,5 +70,5 @@ cp clamav\build\install\include\*.h .\include
 cp -r C:\vcpkg\installed\$VCPKG_DEFAULT_TRIPLET\include\* .\include
 
 mkdir output
-mv output
 mv include output
+mv lib output
