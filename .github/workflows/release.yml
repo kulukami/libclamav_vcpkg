@@ -18,7 +18,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: libclamav_linux_vcpkg_x64
-        path: ./output/*
+        path: output/*
 
   build_vcpkg_linux_arm64:
     runs-on: ubuntu-latest
@@ -117,9 +117,6 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         path: ./
-    - name: Prepare artifact
-      run: mv -f */*.zip ./ || true
-      
     - name: Upload build_vcpkg_linux_x64
       id: upload-release-asset-build_vcpkg_linux_x64
       uses: actions/upload-release-asset@v1
@@ -128,7 +125,7 @@ jobs:
       with:
         asset_content_type: application/zip
         asset_name: libclamav_linux_vcpkg_x64.zip
-        asset_path: libclamav_linux_vcpkg_x64.zip
+        asset_path: libclamav_linux_vcpkg_x64
         upload_url: ${{steps.create_release.outputs.upload_url}}
 
     - name: Upload build_vcpkg_linux_arm64
@@ -139,7 +136,7 @@ jobs:
       with:
         asset_content_type: application/zip
         asset_name: libclamav_linux_vcpkg_arm64.zip
-        asset_path: libclamav_linux_vcpkg_arm64.zip
+        asset_path: libclamav_linux_vcpkg_arm64
         upload_url: ${{steps.create_release.outputs.upload_url}}
 
     - name: Upload build_vcpkg_osx_x64
@@ -150,7 +147,7 @@ jobs:
       with:
         asset_content_type: application/zip
         asset_name: libclamav_osx_vcpkg_x64.zip
-        asset_path: libclamav_osx_vcpkg_x64.zip
+        asset_path: libclamav_osx_vcpkg_x64
         upload_url: ${{steps.create_release.outputs.upload_url}}
         
     - name: Upload build_vcpkg_win_arm64
@@ -161,7 +158,7 @@ jobs:
       with:
         asset_content_type: application/zip
         asset_name: libclamav_win_vcpkg_arm64.zip
-        asset_path: libclamav_win_vcpkg_arm64.zip
+        asset_path: libclamav_win_vcpkg_arm64
         upload_url: ${{steps.create_release.outputs.upload_url}}
 
     needs:
