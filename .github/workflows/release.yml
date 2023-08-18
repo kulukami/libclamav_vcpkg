@@ -18,7 +18,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: libclamav_linux_vcpkg_x64
-        path: libclamav_linux_vcpkg_x64.zip
+        path: ./output/*
 
   build_vcpkg_linux_arm64:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: libclamav_osx_vcpkg_x64
-        path: libclamav_osx_vcpkg_x64.zip
+        path: output/*
   
   build_vcpkg_osx_arm64:
     runs-on: macos-latest
@@ -82,7 +82,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: libclamav_win_vcpkg_x64
-        path: libclamav_win_vcpkg_x64.zip
+        path: output/*
 
   build_vcpkg_win_arm64:
     runs-on: windows-latest
