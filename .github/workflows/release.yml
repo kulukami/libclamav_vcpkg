@@ -118,14 +118,13 @@ jobs:
       with:
         path: ./
     - name: Prepare artifact
-      run: 
-      - mv -f */*.zip ./ || true
-      - zip libclamav_linux_vcpkg_x64.zip   libclamav_linux_vcpkg_x64
-      - zip libclamav_linux_vcpkg_arm64.zip libclamav_linux_vcpkg_arm64
-      - zip libclamav_osx_vcpkg_x64.zip   libclamav_osx_vcpkg_x64
-      - zip libclamav_osx_vcpkg_arm64.zip libclamav_osx_vcpkg_arm64
-      - zip libclamav_win_vcpkg_x64.zip   libclamav_win_vcpkg_x64
-      - zip libclamav_win_vcpkg_arm64.zip libclamav_win_vcpkg_arm64
+      run: |
+      zip libclamav_linux_vcpkg_x64.zip   libclamav_linux_vcpkg_x64
+      zip libclamav_linux_vcpkg_arm64.zip libclamav_linux_vcpkg_arm64
+      zip libclamav_osx_vcpkg_x64.zip   libclamav_osx_vcpkg_x64
+      zip libclamav_osx_vcpkg_arm64.zip libclamav_osx_vcpkg_arm64
+      zip libclamav_win_vcpkg_x64.zip   libclamav_win_vcpkg_x64
+      zip libclamav_win_vcpkg_arm64.zip libclamav_win_vcpkg_arm64
       
     - name: Upload build_vcpkg_linux_x64
       id: upload-release-asset-build_vcpkg_linux_x64
