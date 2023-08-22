@@ -26,14 +26,13 @@ git clone https://github.com/kulukami/clamav -b rel/1.1_yara_hit
 cd clamav
 mkdir build
 cd build
-cmake .. -A arm64 \
+cmake ..  \
   -D CMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" \
   -D VCPKG_TARGET_TRIPLET="$VCPKG_DEFAULT_TRIPLET"                       \
   -D VCPKG_TARGET_ARCHITECTURE="$TARGET_ARCH"                            \
   -D RUST_COMPILER_TARGET="$RUSTC_TARGET"                                \
   -D CMAKE_SYSTEM_NAME=Darwin                                            \
   -D CMAKE_OSX_ARCHITECTURES="arm64"                                     \
-  -D CMAKE_GENERATOR_PLATFORM="arm64"                                    \
   -D ENABLE_TESTS=OFF                                                    \
   -D ENABLE_STATIC_LIB=ON                                                \
   -D ENABLE_LIBCLAMAV_ONLY=ON                                            \

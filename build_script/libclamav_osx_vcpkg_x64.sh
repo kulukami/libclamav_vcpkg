@@ -33,7 +33,6 @@ cmake .. \
   -D RUST_COMPILER_TARGET="$RUSTC_TARGET"                                \
   -D CMAKE_SYSTEM_NAME=Darwin                                            \
   -D CMAKE_OSX_ARCHITECTURES="x86_64"                                    \
-  -D CMAKE_GENERATOR_PLATFORM="x86_64"                                   \
   -D ENABLE_TESTS=OFF                                                    \
   -D ENABLE_STATIC_LIB=ON                                                \
   -D ENABLE_LIBCLAMAV_ONLY=ON                                            \
