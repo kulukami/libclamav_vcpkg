@@ -30,6 +30,8 @@ cmake .. \
   -D CMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" \
   -D VCPKG_TARGET_TRIPLET="$VCPKG_DEFAULT_TRIPLET"                       \
   -D VCPKG_TARGET_ARCHITECTURE="$TARGET_ARCH"                            \
+  -D CMAKE_SYSTEM_NAME=Darwin                                            \
+  -D CMAKE_OSX_ARCHITECTURES="$TARGET_ARCH"                              \
   -D RUST_COMPILER_TARGET="$RUSTC_TARGET"                                \
   -D ENABLE_TESTS=OFF                                                    \
   -D ENABLE_STATIC_LIB=ON                                                \
@@ -73,3 +75,5 @@ cp -r $VCPKG_ROOT/installed/$VCPKG_DEFAULT_TRIPLET/include/* ./include
 mkdir output
 mv include output
 mv lib output
+
+lipo -info output/lib/*.a
